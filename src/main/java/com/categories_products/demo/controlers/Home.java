@@ -47,4 +47,23 @@ public class Home {
         Product p = proCatServ.createProduct(prod);
         return "redirect:/products";
     }
+    @RequestMapping("/categories")
+    public String showCategories(@ModelAttribute("cat") Category category, Model model) {
+        List<Category> categories = proCatServ.allCategories();
+        model.addAttribute("categories", categories);
+        return "newCategory.jsp";
+    }
+
+    @RequestMapping(value = "/categories/new",method = RequestMethod.POST)
+    public String addCategory(@ModelAttribute("cat") Category category) {
+        Category p = proCatServ.createCategory(category);
+        return "redirect:/categories";
+    }
+
+    @RequestMapping("/categories/{id}")
+    public String category(@ModelAttribute("cat") Category category,@PathVariable("id") Long id,Model model){
+        Category cat = proCatServ.findCategory(id);
+        model.addAttribute("cat", cat);
+        return "category.jsp";
+    }
 }

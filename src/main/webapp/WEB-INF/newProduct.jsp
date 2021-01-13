@@ -14,7 +14,7 @@
 
 <h1>Products</h1>
 <c:forEach items="${products}" var="p">
-    <h3>${p.name}: ${p.price}</h3>
+    <h3><a href="/products/${p.id}">${p.name}: ${p.price}</a></h3>
 </c:forEach>
 <h1>New Product</h1>
 <form:form action="/products/new" method="post" modelAttribute="prod">
@@ -35,6 +35,6 @@
     </p>
     <input type="submit" value="Create"/>
 </form:form>
-
+<a href="/categories">Categories</a>
 </body>
 </html>

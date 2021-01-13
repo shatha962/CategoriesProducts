@@ -9,6 +9,7 @@ import com.categories_products.demo.respositories.ProductRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProCatService {
@@ -28,6 +29,15 @@ public class ProCatService {
 
     public List<Category> allCategories() {
         return catRepo.findAll();
+    }
+
+    public Category findCategory(Long id) {
+        Optional<Category> optionalCategory = catRepo.findById(id);
+        if(optionalCategory.isPresent()) {
+            return optionalCategory.get();
+        } else {
+            return null;
+        }
     }
 
     public Product createProduct(Product p) {
